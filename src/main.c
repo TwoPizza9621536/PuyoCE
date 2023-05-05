@@ -1,20 +1,25 @@
-/*
- * SPDX-FileCopyrightText: 2023 Samuel Wu
+/**
+ * @file main.c
+ * @author Samuel Wu
+ * @brief
+ * @date 05/03/2023
  *
+ * SPDX-FileCopyrightText: 2023 Samuel Wu
  * SPDX-License-Identifier: MIT OR MPL-2.0
+ *
  */
 
-#include <stdint.h>
-#include <stdlib.h>
 #include <stdbool.h>
 #include <stddef.h>
+#include <stdint.h>
+#include <stdlib.h>
 
+#include <debug.h>
 #include <graphx.h>
 #include <keypadc.h>
-#include <debug.h>
 
-#include "puyoce.h"
 #include "draw.h"
+#include "puyoce.h"
 
 void initialize_graphics(void)
 {
@@ -22,7 +27,7 @@ void initialize_graphics(void)
     gfx_FillScreen(0);
 }
 
-bool main_game_routine(struct opp_game *game)
+bool main_game_routine(OppGame *game)
 {
     static int firstPuyoXPos = BOARD_KILL_ROW;
     static int firstPuyoYPos = BOARD_KILL_COLUMN;
@@ -35,12 +40,12 @@ bool main_game_routine(struct opp_game *game)
     {
         kb_Scan();
 
-        if (kb_Data[6] == kb_Clear)
+        if (kb_Data [6] == kb_Clear)
         {
             return false;
         }
 
-        key = kb_Data[7];
+        key = kb_Data [7];
         switch (key)
         {
         case kb_Up:
@@ -81,7 +86,8 @@ bool main_game_routine(struct opp_game *game)
         // }
         // draw_puyo();
         gfx_SwapDraw();
-    } while (true);
+    }
+    while (true);
 }
 
 int main(void)
@@ -90,7 +96,7 @@ int main(void)
     bool isClear;
     bool prevkey = false;
 
-    struct opp_game *game = create_opp_game();
+    OppGame *game = create_opp_game();
 
     gfx_Begin();
 
@@ -104,8 +110,8 @@ int main(void)
     {
         kb_Scan();
 
-        isClear = kb_Data[6] == kb_Clear;
-        is2nd = kb_Data[1] == kb_2nd;
+        isClear = kb_Data [6] == kb_Clear;
+        is2nd = kb_Data [1] == kb_2nd;
 
         if (isClear && !prevkey)
         {
@@ -118,7 +124,8 @@ int main(void)
         }
 
         prevkey = isClear || is2nd;
-    } while (true);
+    }
+    while (true);
 
     gfx_End();
 

@@ -45,7 +45,8 @@ Initialization and resetting of the board requires different functions to
 support different rules and modes. There might be a need for more or bigger
 boards for game modes as we need to save a board for fever equivalents, but this
 not a concern yet as this port will be supporting Original Puyo Puyo as a single
-player game.
+player game, until we need to implement those other game which we need to future
+proof so we do not hate ourselves.
 
 ## Puyo
 
@@ -66,12 +67,12 @@ need to be expandable.
 Both ids and flags can also be used to draw the puyo based on if they are
 connected but some assets does not have sprites for connected puyo like
 skins for retro style, block, letters, etc. But if we do this, it is best to
-check the board twice for [game routines](#routines-checks-and-timers) and
+check the board twice for [game routines](#routines-checks-flags-and-timers) and
 graphics if we want to separate the graphics.
 
-## Routines, Checks and Timers
+## Routines, Checks, Flags, and Timers
 
-We need to following checks for OPP: Bounds, Fall, Pop, Kill.
+We need to following checks for OPP: Bounds, Placed, Fall, Pop, Kill.
 
 Bounds check is easy, make sure the puyo are within this range:
 `0 <= x < 13` and `0 <= y < 6`. This is inside of the movement routine
@@ -90,13 +91,19 @@ Mode: Pause
 Clear: Quit
 Stat: Clear scores
 
-### Randomness and Queue
+### Pseudo-Randomness and Queue
 
-Probably use a 16-bit LFSR or srand as a RNG.
+Probably use a 16-bit LFSR or srand as a PRNG. We need a PRNG that generates
+the same list of puyo when given the same seed every single time. That seed
+must be a hash-like number that we can compare for multiplayer.
 
 The queue might be a array of puyo where the first two or four puyo is drawn
 to the next boxes, the drawing of the puyo may be shifted over two where the
 first two puyo are the ones that the player is placing them down.
+
+Or the array to be two pairs of puyo and call the PRNG to fill the next slot and
+move the puyo down. This is dependent on how we put to puyo on the board and
+draw them.
 
 ## Separation Of Concern and Library
 

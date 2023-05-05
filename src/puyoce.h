@@ -1,7 +1,13 @@
-/*
- * SPDX-FileCopyrightText: 2023 Samuel Wu
+/**
+ * @file puyoce.h
+ * @author Samuel Wu (twopizza9621536@gmail.com)
+ * @brief
+ * @version 0.1
+ * @date 05/03/2023
  *
+ * SPDX-FileCopyrightText: 2023 Samuel Wu
  * SPDX-License-Identifier: MIT OR MPL-2.0
+ *
  */
 
 #ifndef PUYOCE_H
@@ -9,42 +15,39 @@
 
 #include <stdint.h>
 
-#define PUYO_SIZE_8 8
-#define PUYO_SIZE_16 16
-#define PUYO_SIZE_32 32
-#define PUYO_SIZE_48 48
-#define PUYO_SIZE_64 64
-#define PUYO_SIZE_96 96
-#define PUYO_SIZE_128 128
-#define PUYO_SIZE_256 256
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
 
-#define BOARD_ROWS 13
+typedef struct opp_game OppGame;
+typedef uint8_t game_flags_t;
+
+OppGame* create_opp_game(void);
+
+void reset_opp_game(OppGame* game);
+
+void change_opp_game(OppGame* game);
+
+#define BOARD_ROWS    13
 #define BOARD_COLUMNS 6
 
-#define BOARD_KILL_ROW 1
+#define BOARD_KILL_ROW    1
 #define BOARD_KILL_COLUMN 2
 
-struct opp_game
-{
+#define TEMP_QUEUE_NUMBER 64
+
+#define GAME_END_FLAG       (1 << 0)
+#define GAME_ALL_CLEAR_FLAG (1 << 1)
+
+struct opp_game {
+    game_flags_t flags;
     uint32_t score;
-    uint8_t gameFlags;
-    uint8_t nextQueue[64];
-    uint8_t board[BOARD_ROWS][BOARD_COLUMNS];
+    uint8_t nextQueue [TEMP_QUEUE_NUMBER];
+    uint8_t board [BOARD_ROWS][BOARD_COLUMNS];
 };
 
 #ifdef __cplusplus
-extern "C"
-{
-#endif /* __cplusplus */
-
-    struct opp_game *create_opp_game(void);
-
-    void reset_opp_game(struct opp_game *game);
-
-    void move_puyo(struct opp_game *game);
-
-#ifdef __cplusplus
-} /* extern "C" */
+} /* extern "C" { */
 #endif /* __cplusplus */
 
 #endif /* PUYOCE_H */
