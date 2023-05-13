@@ -6,16 +6,14 @@
 NAME = PUYOCE
 ICON = icon.png
 DESCRIPTION = "A port of the Puyo Puyo puzzle game to the TI-84 Plus CE"
-COMPRESSED = NO
+COMPRESSED = YES
 ARCHIVED = NO
 
 # C Compiler Flags
-CFLAGS = -std=c99 -Oz
-CFLAGS := -Wall -Wextra -Wpedantic -pedantic -pedantic-errors
+CFLAGS = -Oz -Wall -Wextra -Wpedantic -pedantic -pedantic-errors
 
 # C++ Compiler Flags
-CXXFLAGS = -Wall -Wextra -Weffc++ -Wpedantic -pedantic -pedantic-errors
-CXXFLAGS := -Oz
+CXXFLAGS = -Oz -Wall -Wextra -Weffc++ -Wpedantic -pedantic -pedantic-errors
 
 ## Include default Makefile options
 include $(shell cedev-config --makefile)

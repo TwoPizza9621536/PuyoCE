@@ -2,6 +2,7 @@
 #
 # SPDX-License-Identifier: CC0-1.0
 
+AccessModifierOffset: -4
 AlignArrayOfStructures: Left
 AlignConsecutiveMacros:
   Enabled: true
@@ -14,7 +15,7 @@ AllowShortBlocksOnASingleLine: Empty
 AllowShortEnumsOnASingleLine: true
 AllowShortCaseLabelsOnASingleLine: false
 AllowShortFunctionsOnASingleLine: None
-AllowShortIfStatementsOnASingleLine: false
+AllowShortIfStatementsOnASingleLine: WithoutElse
 AllowShortLambdasOnASingleLine: All
 
 AlwaysBreakAfterReturnType: None
@@ -29,7 +30,7 @@ BraceWrapping:
   AfterEnum: true
   AfterFunction: true
   AfterNamespace: false
-  AfterStruct: false
+  AfterStruct: true
   AfterUnion: true
   AfterExternBlock: false
 
@@ -116,7 +117,7 @@ SpaceBeforeParensOptions:
   BeforeNonEmptyParentheses: false
 
 SpaceBeforeRangeBasedForLoopColon: true
-SpaceBeforeSquareBrackets: true
+SpaceBeforeSquareBrackets: false
 SpaceInEmptyBlock: true
 SpaceInEmptyParentheses: false
 SpacesBeforeTrailingComments: 3
