@@ -1,14 +1,18 @@
 #include <graphx.h>
 #include <keypadc.h>
 
-#include "puyoce/puyoce.hpp"
+#include <sys/rtc.h>
 
-#include "draw.hpp"
+#include "puyoce/puyoce.h"
+
+#include "draw.h"
 #include "gfx/gfx.h"
 
 bool main_game_routine(OppGame& game)
 {
     kb_key_t key;
+
+    game.resetGame();
 
     do
     {
@@ -51,7 +55,7 @@ int main()
     bool isClear;
     bool prevKey = false;
 
-    static OppGame game {};
+    static OppGame game {rtc_Time()};
 
     gfx_Begin();
 

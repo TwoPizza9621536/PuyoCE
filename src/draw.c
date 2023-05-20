@@ -2,8 +2,8 @@
 
 #include "gfx/gfx.h"
 
-#include "draw.hpp"
-#include "puyoce/puyoce.hpp"
+#include "draw.h"
+#include "puyoce/puyoce.h"
 
 void draw_background(void)
 {
