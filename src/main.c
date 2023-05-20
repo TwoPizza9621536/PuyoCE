@@ -8,11 +8,9 @@
 #include "draw.h"
 #include "gfx/gfx.h"
 
-bool main_game_routine(OppGame& game)
+void main_game_routine(void)
 {
     kb_key_t key;
-
-    game.resetGame();
 
     do
     {
@@ -20,7 +18,7 @@ bool main_game_routine(OppGame& game)
 
         if (kb_Data[6] == kb_Clear)
         {
-            return false;
+            break;
         }
 
         key = kb_Data[7];
@@ -49,13 +47,11 @@ bool main_game_routine(OppGame& game)
     while (true);
 }
 
-int main()
+int main(void)
 {
     bool is2nd;
     bool isClear;
     bool prevKey = false;
-
-    static OppGame game {rtc_Time()};
 
     gfx_Begin();
 
@@ -81,7 +77,7 @@ int main()
 
         if (is2nd && !prevKey)
         {
-            main_game_routine(game);
+            main_game_routine();
         }
 
         prevKey = isClear || is2nd;

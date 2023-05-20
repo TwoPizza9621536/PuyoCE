@@ -1,26 +1,29 @@
+#include <stdbool.h>
 #include <sys/util.h>
 
 #include "opp.h"
 
-#include "fallingpuyo.h"
 #include "player.h"
 
 #define PLAYER_ID 1
 
-OPPGame* Initialize_OPPGame(uint32_t seed)
+OPPGame* Initialize_OPPGame(const uint32_t seed, const ColorSet color_set)
 {
     static OPPGame game;
 
-    game.currentStatus = Initialize_OPPGame(PLAYER_ID);
+    game.currentStatus = Initialize_Player(PLAYER_ID, game.upcomingPuyo);
     game.seed = seed;
+    game.colorSet = color_set;
 
     srandom(seed);
 
     return &game;
 }
 
-void OPP_reset_game(OPPGame* game)
+void OPPGame_reset(OPPGame* game)
 {
+    PoolPuyo* pool = OPPGame_select_pool(game);
+
     for (int i = 0; i < BOARD_ROWS; i++)
     {
         for (int j = 0; j < BOARD_COLUMNS; j++)
@@ -30,6 +33,8 @@ void OPP_reset_game(OPPGame* game)
     }
 
     OPPGame_reset_pool(game->colorSetThreePool, COLOR_SET_THREE);
+    OPPGame_reset_pool(game->colorSetFourPool, COLOR_SET_FOUR);
+    OPPGame_reset_pool(game->colorSetFivePool, COLOR_SET_FIVE);
 
     for (int i = 0; i < 4; i++)
     {
@@ -42,10 +47,17 @@ void OPP_reset_game(OPPGame* game)
         game->colorSetFivePool[i] = game->colorSetFourPool[i];
     }
 
+    for (int i = 0; i < NUM_OF_UPCOMING_PUYO; i++)
+    {
+        game->upcomingPuyo[i] = pool[i];
+    }
+
     Player_reset_status(game->currentStatus);
+
+    game->currentRound++;
 }
 
-void OPPGame_reset_pool(PoolPuyo* pool, ColorSet color_set)
+void OPPGame_reset_pool(PoolPuyo* pool, const ColorSet color_set)
 {
     for (int i = 0; i < PUYO_POOL_SIZE; i++)
     {
@@ -81,4 +93,49 @@ void OPPGame_reset_pool(PoolPuyo* pool, ColorSet color_set)
         pool[i] = pool[randPuyoIndex];
         pool[randPuyoIndex] = temp;
     }
+}
+
+PoolPuyo* OPPGame_select_pool(OPPGame* game)
+{
+    switch (game->colorSet)
+    {
+    case COLOR_SET_THREE:
+        return game->colorSetThreePool;
+
+    case COLOR_SET_FOUR:
+        return game->colorSetFourPool;
+
+    case COLOR_SET_FIVE:
+        return game->colorSetFivePool;
+
+    default:
+        return game->colorSetFourPool;
+    }
+}
+
+bool OPPGame_spawn_puyo(OPPGame* game)
+{
+    static int poolIndex = 6;
+    PoolPuyo* pool = OPPGame_select_pool(game);
+
+    if (game->board[3][0] != BOARD_PUYO_EMPTY)
+    {
+        return false;
+    }
+
+    Player_hold_puyo(game->currentStatus);
+
+    for (int i = 2; i < NUM_OF_UPCOMING_PUYO; i += 2)
+    {
+        game->upcomingPuyo[i - 2] = game->upcomingPuyo[i];
+        game->upcomingPuyo[i - 1] = game->upcomingPuyo[i + 1];
+    }
+
+    for (int i = 4; i < NUM_OF_UPCOMING_PUYO; i++)
+    {
+        game->upcomingPuyo[i] = pool[poolIndex];
+        poolIndex++;
+    }
+
+    return true;
 }

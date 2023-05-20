@@ -1,9 +1,9 @@
 #ifndef OPP_H
 #define OPP_H
 
+#include <stdbool.h>
 #include <stdint.h>
 
-#include "fallingpuyo.h"
 #include "player.h"
 #include "puyo.h"
 
@@ -28,12 +28,16 @@ typedef struct original_puyo_puyo_game
     PoolPuyo colorSetFourPool[PUYO_POOL_SIZE];
     PoolPuyo colorSetFivePool[PUYO_POOL_SIZE];
     Player* currentStatus;
+    ColorSet colorSet;
     uint32_t seed;
+    uint8_t currentRound;
 } OPPGame;
 
-OPPGame* Initialize_OPPGame(uint32_t seed);
-void OPP_reset_game(OPPGame* game);
-void OPPGame_reset_pool(PoolPuyo* pool, ColorSet color_set);
+OPPGame* Initialize_OPPGame(const uint32_t seed, const ColorSet color_set);
+void OPPGame_reset(OPPGame* game);
+void OPPGame_reset_pool(PoolPuyo* pool, const ColorSet color_set);
+PoolPuyo* OPPGame_select_pool(OPPGame* game);
+bool OPPGame_spawn_puyo(OPPGame* game);
 
 #ifdef __cplusplus
 } /* extern "C" { */

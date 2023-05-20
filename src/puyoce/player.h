@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-#include "fallingpuyo.h"
+#include "puyo.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -16,11 +16,13 @@ typedef struct player
     uint32_t score;
     uint32_t chainScore;
     uint16_t chianMultiplier;
-    FallingPuyo* selected_puyo;
+    FallingPuyo* selectedPuyo;
+    PoolPuyo* upcomingPuyo;
 } Player;
 
-Player* Initialize_Player(const uint32_t id);
+Player* Initialize_Player(const uint32_t id, PoolPuyo* upcoming_puyo);
 void Player_reset_status(Player* player);
+void Player_hold_puyo(Player* player_status);
 
 #ifdef __cplusplus
 } /* extern "C" { */
