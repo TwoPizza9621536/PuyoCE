@@ -23,16 +23,28 @@ void Player_reset_status(Player* player)
     FallingPuyo_reset(player->selectedPuyo);
 }
 
-void Player_hold_puyo(Player* player_status)
+void Player_hold_puyo(Player* status)
 {
-    player_status->selectedPuyo->color = player_status->upcomingPuyo[0];
-    player_status->selectedPuyo->xPosition = BOARD_KILL_COLUMN;
-    player_status->selectedPuyo->yPosition = 0;
-    player_status->selectedPuyo->rotation = PUYO_ROTATION_TOP;
+    status->selectedPuyo->color = status->upcomingPuyo[0];
+    status->selectedPuyo->xPosition = BOARD_KILL_COLUMN;
+    status->selectedPuyo->yPosition = 0;
+    status->selectedPuyo->rotation = PUYO_ROTATION_TOP;
 
-    player_status->selectedPuyo->neighboringPuyo->color =
-        player_status->upcomingPuyo[1];
-    player_status->selectedPuyo->neighboringPuyo->xPosition = BOARD_KILL_COLUMN;
-    player_status->selectedPuyo->neighboringPuyo->yPosition = 1;
-    player_status->selectedPuyo->rotation = PUYO_ROTATION_BOTTOM;
+    status->selectedPuyo->neighboringPuyo->color = status->upcomingPuyo[1];
+    status->selectedPuyo->neighboringPuyo->xPosition = BOARD_KILL_COLUMN;
+    status->selectedPuyo->neighboringPuyo->yPosition = 1;
+    status->selectedPuyo->rotation = PUYO_ROTATION_BOTTOM;
+}
+
+void Player_move_puyo(Player* status, const uint8_t movement)
+{
+    switch (movement)
+    {
+    case MOVEMENT_DOWN:
+
+        break;
+
+    default:
+        break;
+    }
 }

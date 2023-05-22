@@ -29,6 +29,4 @@ void draw_background(void);
 
 void draw_puyo(void);
 
-void initialize_graphics(void);
-
 #endif /* DRAW_H */

@@ -36,6 +36,7 @@ typedef struct original_puyo_puyo_game
 OPPGame* Initialize_OPPGame(const uint32_t seed, const ColorSet color_set);
 void OPPGame_reset(OPPGame* game);
 void OPPGame_reset_pool(PoolPuyo* pool, const ColorSet color_set);
+void OPPGame_set_board(OPPGame* game, const BoardPuyo puyo);
 PoolPuyo* OPPGame_select_pool(OPPGame* game);
 bool OPPGame_spawn_puyo(OPPGame* game);
 

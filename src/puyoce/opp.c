@@ -24,13 +24,7 @@ void OPPGame_reset(OPPGame* game)
 {
     PoolPuyo* pool = OPPGame_select_pool(game);
 
-    for (int i = 0; i < BOARD_ROWS; i++)
-    {
-        for (int j = 0; j < BOARD_COLUMNS; j++)
-        {
-            game->board[i][j] = BOARD_PUYO_EMPTY;
-        }
-    }
+    OPPGame_set_board(game, BOARD_PUYO_EMPTY);
 
     OPPGame_reset_pool(game->colorSetThreePool, COLOR_SET_THREE);
     OPPGame_reset_pool(game->colorSetFourPool, COLOR_SET_FOUR);
@@ -110,6 +104,17 @@ PoolPuyo* OPPGame_select_pool(OPPGame* game)
 
     default:
         return game->colorSetFourPool;
+    }
+}
+
+void OPPGame_set_board(OPPGame* game, const BoardPuyo puyo)
+{
+    for (int i = 0; i < BOARD_ROWS; i++)
+    {
+        for (int j = 0; j < BOARD_COLUMNS; j++)
+        {
+            game->board[i][j] = puyo;
+        }
     }
 }
 

@@ -1,13 +1,14 @@
 #include <graphx.h>
 
-#include "gfx/gfx.h"
+#include "gfx/puyogfx.h"
 
 #include "draw.h"
 #include "puyoce/puyoce.h"
 
 void draw_background(void)
 {
-    gfx_SetColor(0);
+    gfx_ZeroScreen();
+    gfx_SetColor(2);
     gfx_FillRectangle(BOARD_OFFSET, BOARD_OFFSET, BOARD_WIDTH, BOARD_HEIGHT);
     gfx_FillRectangle(NEXT1_X_POS, NEXT1_Y_POS, SPRITE_32, SPRITE_48);
     gfx_FillRectangle(NEXT2_X_POS, NEXT2_Y_POS, SPRITE_32, SPRITE_48);
@@ -28,9 +29,6 @@ void draw_puyo(void)
     }
 }
 
-void initialize_graphics(void)
+void draw_holding_puyo(void)
 {
-    gfx_SetDrawBuffer();
-    gfx_SetPalette(global_palette, sizeof_global_palette, 0);
-    gfx_FillScreen(1);
 }

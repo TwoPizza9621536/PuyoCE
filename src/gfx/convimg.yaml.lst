@@ -1,5 +1,3 @@
-global_palette.h
-global_palette.c
-menu.h
-menu.c
-gfx.h
+puyogfx.h
+PUYOGFX.c
+PUYOGFX.8xv
