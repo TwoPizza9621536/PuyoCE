@@ -22,14 +22,11 @@ int main(void)
         os_ClrHome();
 
         os_SetCursorPos(0, 2);
-        os_SetDrawBGColor(OS_COLOR_BLACK);
-        os_SetDrawFGColor(OS_COLOR_WHITE);
         os_PutStrLine("ERROR: Missing Library");
 
         os_SetCursorPos(2, 0);
-        os_SetDrawBGColor(OS_COLOR_WHITE);
-        os_SetDrawFGColor(OS_COLOR_BLACK);
         os_PutStrLine("Library Name: PUYOGFX");
+
         os_SetCursorPos(4, 0);
         os_PutStrLine("Did you uploaded");
         os_NewLine();
@@ -46,23 +43,22 @@ int main(void)
     gfx_SetDrawBuffer();
     gfx_SetPalette(global_palette, sizeof_global_palette, 0);
 
-    draw_background();
-    gfx_SwapDraw();
+    draw_menu();
 
     do {
         kb_Scan();
-
-        gfx_BlitScreen();
-        gfx_TransparentSprite_NoClip(menu, MENU_OFFSET, MENU_OFFSET);
 
         isClear = kb_Data[6] == kb_Clear;
         is2nd = kb_Data[1] == kb_2nd;
 
         if (isClear && !prevKey) break;
-        if (is2nd && !prevKey) main_game_routine();
+        if (is2nd && !prevKey)
+        {
+            main_game_routine();
+            draw_menu();
+        }
 
         prevKey = isClear || is2nd;
-        gfx_SwapDraw();
     }
     while (true);
 

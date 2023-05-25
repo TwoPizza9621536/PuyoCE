@@ -10,7 +10,10 @@ converts:
   - name: text
     palette: global_palette
     images:
-      - menu
+      - text/high
+      - text/menu
+      - text/puyo_popped
+      - text/score
 
 outputs:
   - type: appvar

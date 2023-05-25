@@ -23,9 +23,11 @@
 #define NEXT2_Y_POS (NEXT1_Y_POS + SPRITE_8)
 
 #define COUNT_X_POS NEXT1_X_POS
-#define COUNT_Y_POS (SPRITE_96 + SPRITE_48)
+#define COUNT_Y_POS SPRITE_128
 
 void draw_background(void);
+
+void draw_menu(void);
 
 void draw_puyo(void);
 

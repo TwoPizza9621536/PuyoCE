@@ -9,12 +9,26 @@ void draw_background(void)
 {
     gfx_ZeroScreen();
     gfx_SetColor(2);
+
     gfx_FillRectangle(BOARD_OFFSET, BOARD_OFFSET, BOARD_WIDTH, BOARD_HEIGHT);
+
+    /* Draw next puyo slots */
     gfx_FillRectangle(NEXT1_X_POS, NEXT1_Y_POS, SPRITE_32, SPRITE_48);
     gfx_FillRectangle(NEXT2_X_POS, NEXT2_Y_POS, SPRITE_32, SPRITE_48);
-    gfx_FillRectangle(COUNT_X_POS, COUNT_Y_POS, SPRITE_96, SPRITE_16);
-    gfx_FillRectangle(COUNT_X_POS, COUNT_Y_POS + SPRITE_48, SPRITE_96,
-                      SPRITE_16);
+
+    /* Draw score and puyo counters */
+    gfx_FillRectangle(COUNT_X_POS, COUNT_Y_POS, SPRITE_128, SPRITE_32);
+    gfx_FillRectangle(COUNT_X_POS, COUNT_Y_POS + SPRITE_48, SPRITE_128,
+                      SPRITE_32);
+
+    gfx_TransparentSprite_NoClip(puyo_popped, COUNT_X_POS, COUNT_Y_POS);
+}
+
+void draw_menu(void)
+{
+    draw_background();
+    gfx_TransparentSprite_NoClip(menu, MENU_OFFSET, MENU_OFFSET);
+    gfx_SwapDraw();
 }
 
 void draw_puyo(void)

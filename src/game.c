@@ -13,8 +13,6 @@ void main_game_routine(void)
 
     while (main_logic_routine())
     {
-        gfx_BlitScreen();
-
         gfx_SwapDraw();
     }
 }
