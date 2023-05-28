@@ -2,7 +2,7 @@
 #include "opp.h"
 #include "puyo.h"
 
-Player* Initialize_Player(const uint32_t id, PoolPuyo* upcoming_puyo)
+Player* Initialize_Player(const uint32_t id, PoolPuyo* const upcoming_puyo)
 {
     static Player player;
 
@@ -14,7 +14,7 @@ Player* Initialize_Player(const uint32_t id, PoolPuyo* upcoming_puyo)
     return &player;
 }
 
-void Player_reset_status(Player* player)
+void Player_reset_status(Player* const player)
 {
     player->chainLength = 0;
     player->chainScore = 0;
@@ -23,7 +23,7 @@ void Player_reset_status(Player* player)
     FallingPuyo_reset(player->selectedPuyo);
 }
 
-void Player_hold_puyo(Player* status)
+void Player_hold_puyo(Player* const status)
 {
     status->selectedPuyo->color = status->upcomingPuyo[0];
     status->selectedPuyo->xPosition = BOARD_KILL_COLUMN;
@@ -36,7 +36,7 @@ void Player_hold_puyo(Player* status)
     status->selectedPuyo->rotation = PUYO_ROTATION_BOTTOM;
 }
 
-void Player_move_puyo(Player* status, const uint8_t movement)
+void Player_move_puyo(Player* const status, const uint8_t movement)
 {
     switch (movement)
     {

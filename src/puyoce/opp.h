@@ -1,5 +1,5 @@
-#ifndef OPP_H
-#define OPP_H
+#ifndef PUYOCE_OPP_H
+#define PUYOCE_OPP_H
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -9,7 +9,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif
+#endif /* __cplusplus */
 
 #define BOARD_ROWS    12
 #define BOARD_COLUMNS 6
@@ -33,15 +33,15 @@ typedef struct original_puyo_puyo_game
     uint8_t currentRound;
 } OPPGame;
 
-OPPGame* Initialize_OPPGame(const uint32_t seed, const ColorSet color_set);
-void OPPGame_reset(OPPGame* game);
-void OPPGame_reset_pool(PoolPuyo* pool, const ColorSet color_set);
-void OPPGame_set_board(OPPGame* game, const BoardPuyo puyo);
-PoolPuyo* OPPGame_select_pool(OPPGame* game);
-bool OPPGame_spawn_puyo(OPPGame* game);
+OPPGame* Initialize_OPPGame(const uint32_t seed);
+void OPPGame_reset(OPPGame* const game, const ColorSet color_set);
+void OPPGame_reset_pool(PoolPuyo* const pool, const ColorSet color_set);
+void OPPGame_set_board(OPPGame* const game, const BoardPuyo puyo);
+PoolPuyo* OPPGame_select_pool(OPPGame* const game, const ColorSet color_set);
+bool OPPGame_spawn_puyo(OPPGame* const game);
 
 #ifdef __cplusplus
 } /* extern "C" { */
-#endif
+#endif /* __cplusplus */
 
-#endif /* OPP_H */
+#endif /* PUYOCE_OPP_H */

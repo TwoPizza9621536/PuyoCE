@@ -7,22 +7,22 @@
 
 #define PLAYER_ID 1
 
-OPPGame* Initialize_OPPGame(const uint32_t seed, const ColorSet color_set)
+OPPGame* Initialize_OPPGame(const uint32_t seed)
 {
     static OPPGame game;
 
     game.currentStatus = Initialize_Player(PLAYER_ID, game.upcomingPuyo);
     game.seed = seed;
-    game.colorSet = color_set;
 
     srandom(seed);
 
     return &game;
 }
 
-void OPPGame_reset(OPPGame* game)
+void OPPGame_reset(OPPGame* const game, const ColorSet color_set)
 {
-    PoolPuyo* pool = OPPGame_select_pool(game);
+    const PoolPuyo* const pool = OPPGame_select_pool(game, color_set);
+    game->colorSet = color_set;
 
     OPPGame_set_board(game, BOARD_PUYO_EMPTY);
 
@@ -51,7 +51,7 @@ void OPPGame_reset(OPPGame* game)
     game->currentRound++;
 }
 
-void OPPGame_reset_pool(PoolPuyo* pool, const ColorSet color_set)
+void OPPGame_reset_pool(PoolPuyo* const pool, const ColorSet color_set)
 {
     for (int i = 0; i < PUYO_POOL_SIZE; i++)
     {
@@ -89,9 +89,9 @@ void OPPGame_reset_pool(PoolPuyo* pool, const ColorSet color_set)
     }
 }
 
-PoolPuyo* OPPGame_select_pool(OPPGame* game)
+PoolPuyo* OPPGame_select_pool(OPPGame* const game, const ColorSet color_set)
 {
-    switch (game->colorSet)
+    switch (color_set)
     {
     case COLOR_SET_THREE:
         return game->colorSetThreePool;
@@ -107,7 +107,7 @@ PoolPuyo* OPPGame_select_pool(OPPGame* game)
     }
 }
 
-void OPPGame_set_board(OPPGame* game, const BoardPuyo puyo)
+void OPPGame_set_board(OPPGame* const game, const BoardPuyo puyo)
 {
     for (int i = 0; i < BOARD_ROWS; i++)
     {
@@ -118,10 +118,10 @@ void OPPGame_set_board(OPPGame* game, const BoardPuyo puyo)
     }
 }
 
-bool OPPGame_spawn_puyo(OPPGame* game)
+bool OPPGame_spawn_puyo(OPPGame* const game)
 {
     static int poolIndex = 6;
-    PoolPuyo* pool = OPPGame_select_pool(game);
+    const PoolPuyo* const pool = OPPGame_select_pool(game, game->colorSet);
 
     if (game->board[3][0] != BOARD_PUYO_EMPTY)
     {

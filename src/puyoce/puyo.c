@@ -12,7 +12,7 @@ FallingPuyo* Initialize_FallingPuyo(const uint8_t player_id)
     return &main_puyo;
 }
 
-void FallingPuyo_reset(FallingPuyo* puyo)
+void FallingPuyo_reset(FallingPuyo* const puyo)
 {
     puyo->color = POOL_PUYO_RED;
     puyo->status = 0;

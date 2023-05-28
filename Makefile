@@ -7,6 +7,7 @@ NAME = PUYOCE
 DESCRIPTION = "A port of the Puyo Puyo puzzle game to the TI-84 Plus CE"
 ICON = icon.png
 COMPRESSED = NO
+COMPRESSED_MODE = zx0
 ARCHIVED = NO
 
 # C Compiler Flags

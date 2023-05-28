@@ -1,11 +1,11 @@
-#ifndef PUYO_H
-#define PUYO_H
+#ifndef PUYOCE_PUYO_H
+#define PUYOCE_PUYO_H
 
 #include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {
-#endif
+#endif /* __cplusplus */
 
 typedef uint8_t BoardPuyo;
 typedef uint8_t PoolPuyo;
@@ -24,7 +24,7 @@ typedef struct falling_puyo
 } FallingPuyo;
 
 FallingPuyo* Initialize_FallingPuyo(const uint8_t player_id);
-void FallingPuyo_reset(FallingPuyo* puyo);
+void FallingPuyo_reset(FallingPuyo* const puyo);
 
 #define POOL_PUYO_RED    0
 #define POOL_PUYO_YELLOW 1
@@ -61,6 +61,6 @@ void FallingPuyo_reset(FallingPuyo* puyo);
 
 #ifdef __cplusplus
 } /* extern "C" { */
-#endif
+#endif /* __cplusplus */
 
-#endif /* PUYO_H */
+#endif /* PUYOCE_PUYO_H */

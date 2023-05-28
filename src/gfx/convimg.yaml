@@ -10,16 +10,11 @@ converts:
   - name: text
     palette: global_palette
     images:
-      - text/high
-      - text/menu
-      - text/puyo_popped
-      - text/score
+      - text_*
 
 outputs:
-  - type: appvar
-    name: PUYOGFX
+  - type: c
     include-file: puyogfx.h
-    source-format: c
     palettes:
       - global_palette
     converts:

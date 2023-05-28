@@ -1,5 +1,5 @@
-#ifndef PLAYER_H
-#define PLAYER_H
+#ifndef PUYOCE_PLAYER_H
+#define PUYOCE_PLAYER_H
 
 #include <stdint.h>
 
@@ -7,7 +7,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif
+#endif /* __cplusplus */
 
 typedef uint8_t MovementCodes;
 
@@ -22,10 +22,10 @@ typedef struct player
     PoolPuyo* upcomingPuyo;
 } Player;
 
-Player* Initialize_Player(const uint32_t id, PoolPuyo* upcoming_puyo);
-void Player_reset_status(Player* player);
-void Player_hold_puyo(Player* status);
-void Player_move_puyo(Player* status, const uint8_t movement);
+Player* Initialize_Player(const uint32_t id, PoolPuyo* const upcoming_puyo);
+void Player_reset_status(Player* const player);
+void Player_hold_puyo(Player* const status);
+void Player_move_puyo(Player* const status, const uint8_t movement);
 
 #define MOVEMENT_DOWN         (1 << 0)
 #define MOVEMENT_LEFT         (1 << 1)
@@ -35,6 +35,6 @@ void Player_move_puyo(Player* status, const uint8_t movement);
 
 #ifdef __cplusplus
 } /* extern "C" { */
-#endif
+#endif /* __cplusplus */
 
-#endif /* PLAYER_H */
+#endif /* PUYOCE_PLAYER_H */

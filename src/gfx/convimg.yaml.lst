@@ -1,3 +1,15 @@
+global_palette.h
+global_palette.c
+text_color.h
+text_color.c
+text_high.h
+text_high.c
+text_menu.h
+text_menu.c
+text_next.h
+text_next.c
+text_puyo_popped.h
+text_puyo_popped.c
+text_score.h
+text_score.c
 puyogfx.h
-PUYOGFX.c
-PUYOGFX.8xv

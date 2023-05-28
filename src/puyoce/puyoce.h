@@ -1,8 +1,8 @@
-#ifndef PUYO_CE_H
-#define PUYO_CE_H
+#ifndef PUYOCE_H
+#define PUYOCE_H
 
 #include "opp.h"
 #include "player.h"
 #include "puyo.h"
 
-#endif /* PUYO_CE_H */
+#endif /* PUYOCE_H */

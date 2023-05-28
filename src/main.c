@@ -16,28 +16,8 @@ int main(void)
     bool is2nd;
     bool isClear;
     bool prevKey = false;
-
-    if (PUYOGFX_init() == 0)
-    {
-        os_ClrHome();
-
-        os_SetCursorPos(0, 2);
-        os_PutStrLine("ERROR: Missing Library");
-
-        os_SetCursorPos(2, 0);
-        os_PutStrLine("Library Name: PUYOGFX");
-
-        os_SetCursorPos(4, 0);
-        os_PutStrLine("Did you uploaded");
-        os_NewLine();
-        os_PutStrLine("PUYOGFX.8xv along with");
-        os_NewLine();
-        os_PutStrLine("PUYOCE.8xp?");
-
-        while (!os_GetCSC()) continue;
-
-        return 1;
-    }
+    // TODO: Select color set in menu
+    OPPGame* game = Initialize_OPPGame(0);
 
     gfx_Begin();
     gfx_SetDrawBuffer();
@@ -45,7 +25,8 @@ int main(void)
 
     draw_menu();
 
-    do {
+    while (true)
+    {
         kb_Scan();
 
         isClear = kb_Data[6] == kb_Clear;
@@ -60,7 +41,6 @@ int main(void)
 
         prevKey = isClear || is2nd;
     }
-    while (true);
 
     gfx_End();
 
