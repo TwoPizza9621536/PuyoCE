@@ -1,9 +1,10 @@
 #include <stdbool.h>
+#include <stdint.h>
 #include <sys/util.h>
 
 #include "opp.h"
-
 #include "player.h"
+#include "puyo.h"
 
 #define PLAYER_ID 1
 

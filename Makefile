@@ -11,12 +11,10 @@ COMPRESSED_MODE = zx0
 ARCHIVED = NO
 
 # C Compiler Flags
-CFLAGS = -std=c99
-CFLAGS += -Oz -Wall -Wextra -Wpedantic -pedantic -pedantic-errors
+CFLAGS = -std=c99 -Oz -Wall -Wextra -Wpedantic
 
 # C++ Compiler Flags
-CXXFLAGS = -std=c++98
-CXXFLAGS += -Oz -Wall -Wextra -Weffc++ -Wpedantic -pedantic -pedantic-errors
+CXXFLAGS = -std=c++98 -Oz -Wall -Wextra -Wpedantic -Weffc++
 
 ## Include default Makefile options
 include $(shell cedev-config --makefile)

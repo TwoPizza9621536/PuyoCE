@@ -1,5 +1,7 @@
-#include "player.h"
+#include <stdint.h>
+
 #include "opp.h"
+#include "player.h"
 #include "puyo.h"
 
 Player* Initialize_Player(const uint32_t id, PoolPuyo* const upcoming_puyo)

@@ -1,3 +1,5 @@
+#include <stdint.h>
+
 #include "puyo.h"
 
 FallingPuyo* Initialize_FallingPuyo(const uint8_t player_id)

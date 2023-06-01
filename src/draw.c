@@ -5,6 +5,9 @@
 #include "draw.h"
 #include "puyoce/puyoce.h"
 
+void ui32toa(uint32_t source, char* destination, int minWidth);
+void strrev(char* str);
+
 void draw_background(void)
 {
     gfx_ZeroScreen();
@@ -30,6 +33,7 @@ void draw_menu(void)
 
     gfx_TransparentSprite_NoClip(text_high, HIGH_X_POS, SCORE_Y_POS);
     gfx_TransparentSprite_NoClip(text_menu, MENU_OFFSET, MENU_OFFSET);
+
     gfx_SwapDraw();
 }
 
@@ -45,4 +49,43 @@ void draw_puyo(void)
 
 void draw_holding_puyo(void)
 {
+}
+
+static void ui32toa(uint32_t source, char* destination, int minWidth)
+{
+    int i = 0;
+
+    do {
+        destination[i++] = source % 10 + '0';
+        minWidth--;
+    }
+    while ((source /= 10) > 0);
+
+    while (i < minWidth)
+    {
+        destination[i] = '0';
+        i++;
+        minWidth--;
+    }
+
+    strrev(destination);
+}
+
+static void strrev(char* str)
+{
+    int start = 0;
+    int end;
+    char temp;
+
+    if (str == NULL) return;
+    if (*str == '\0') return;
+
+    end = strlen(str) - 1;
+
+    while (end > start)
+    {
+        temp = str[start];
+        str[start] = str[end];
+        str[end] = temp;
+    }
 }

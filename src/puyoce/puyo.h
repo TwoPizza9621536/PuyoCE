@@ -26,6 +26,15 @@ typedef struct falling_puyo
 FallingPuyo* Initialize_FallingPuyo(const uint8_t player_id);
 void FallingPuyo_reset(FallingPuyo* const puyo);
 
+#define BOARD_ROWS    12
+#define BOARD_COLUMNS 6
+
+#define BOARD_KILL_ROW    0
+#define BOARD_KILL_COLUMN 2
+
+#define PUYO_POOL_SIZE       256
+#define NUM_OF_UPCOMING_PUYO 6
+
 #define POOL_PUYO_RED    0
 #define POOL_PUYO_YELLOW 1
 #define POOL_PUYO_GREEN1 2

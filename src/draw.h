@@ -23,7 +23,7 @@
 #define NEXT1_Y_POS     (BOARD_OFFSET + SPRITE_16)
 #define NEXT2_X_POS     (NEXT1_X_POS + SPRITE_24)
 #define NEXT2_Y_POS     (NEXT1_Y_POS + SPRITE_8)
-#define NEXT_TEXT_X_POS (NEXT1_X_POS + (text_high_width / 2))
+#define NEXT_TEXT_X_POS (NEXT1_X_POS + (NEXT_WIDTH - (text_next_width / 2)) - 4)
 
 #define COUNT_WIDTH  SPRITE_128
 #define COUNT_HEIGHT SPRITE_32

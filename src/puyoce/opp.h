@@ -11,15 +11,6 @@
 extern "C" {
 #endif /* __cplusplus */
 
-#define BOARD_ROWS    12
-#define BOARD_COLUMNS 6
-
-#define BOARD_KILL_ROW    0
-#define BOARD_KILL_COLUMN 2
-
-#define PUYO_POOL_SIZE       256
-#define NUM_OF_UPCOMING_PUYO 6
-
 typedef struct original_puyo_puyo_game
 {
     BoardPuyo board[BOARD_ROWS][BOARD_COLUMNS];
